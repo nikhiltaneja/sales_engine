@@ -18,7 +18,7 @@ class InvoiceTest < Minitest::Test
             :created_at => '2012-03-25 09:54:09 UTC',
             :updated_at => '2012-03-25 09:54:09 UTC'
     }
-    invoice = Invoice.new
+    invoice = Invoice.new(data)
     assert_equal data[:id], invoice.id
     assert_equal data[:customer_id], invoice.customer_id
     assert_equal data[:merchant_id], invoice.merchant_id
