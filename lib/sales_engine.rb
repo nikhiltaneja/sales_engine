@@ -103,6 +103,16 @@ class MerchantRepository
     all.sample
   end
 
+  # def find_by_id(criteria)
+  #   find_by(:id,criteria)
+  # end
+
+  def find_by(attribute, criteria)
+    all.find do |vendor| 
+      vendor.send(attribute.to_sym) == criteria
+    end
+  end
+
   private
 
   def build_merchants

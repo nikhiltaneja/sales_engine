@@ -35,7 +35,20 @@ class MerchantRepositoryTest < Minitest::Test
     refute_equal merchant_one.id, merchant_two.id
   end
 
-  
+  def test_find_by_name
+    data = {:id => "7",
+            :name => "Bernhard-Johns",
+            :created_at => "2012-03-27 14:53:59 UTC",
+            :updated_at => "2012-03-27 14:53:59 UTC"}
+
+    attribute = "name"
+    criteria = "Bernhard-Johns"
+
+    assert_equal data[:id], repo.find_by(attribute, criteria).id
+
+  end
+
+
 
 
 end
