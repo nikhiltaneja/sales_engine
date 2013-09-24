@@ -25,4 +25,17 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal "Schroeder-Jerde", merchant.name
   end
 
+  def test_random_merchant
+    merchant_one = repo.random
+    merchant_two = repo.random
+    10.times do
+      break if merchant_one.id != merchant_two.id
+      merchant_two = repo.random
+    end
+    refute_equal merchant_one.id, merchant_two.id
+  end
+
+  
+
+
 end

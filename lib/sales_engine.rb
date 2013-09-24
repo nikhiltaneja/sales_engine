@@ -99,11 +99,9 @@ class MerchantRepository
     @all ||= build_merchants
   end
 
-
-
-  # def random
-  #   data.sample
-  # end
+  def random
+    all.sample
+  end
 
   private
 
