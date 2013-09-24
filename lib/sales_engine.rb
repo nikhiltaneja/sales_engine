@@ -3,16 +3,43 @@ require 'minitest/autorun'
 require 'minitest/pride'
 
 class Customer
+  attr_reader :id, :first_name, :last_name, :created_at, :updated_at
 
   def initialize(input = {})
-
+    @id = input[:id]
+    @first_name = input[:first_name]
+    @last_name = input[:last_name]
+    @created_at = input[:created_at]
+    @updated_at = input[:updated_at]
   end
 
 end
 
 class InvoiceItem
-  def initialize(input = {})
+  attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at
 
+  def initialize(input = {})
+    @id = input[:id]
+    @item_id = input[:item_id]
+    @invoice_id = input[:invoice_id]
+    @quantity = input[:quantity]
+    @unit_price = input[:unit_price]
+    @created_at = input[:created_at]
+    @updated_at = input[:updated_at]
+  end
+
+end
+
+class Invoice 
+  attr_reader :id, :customer_id, :merchant_id, :status, :created_at, :updated_at
+
+  def initialize(input = {})
+    @id = input[:id]
+    @customer_id = input[:customer_id]
+    @merchant_id = input[:merchant_id]
+    @status = input[:status]
+    @created_at = input[:created_at]
+    @updated_at = input[:updated_at]
   end
 
 end
