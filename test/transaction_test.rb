@@ -14,7 +14,7 @@ class TransactionTest < Minitest::Test
     data = {:id => '3',
             :invoice_id =>  '4',
             :credit_card_number => '4354495077693036',
-            :credit_card_expiration_date => ''
+            :credit_card_expiration_date => "",
             :result =>  'success',
             :created_at => '2012-03-27 14:54:10 UTC',
             :updated_at => '2012-03-27 14:54:10 UTC'}
@@ -23,7 +23,7 @@ class TransactionTest < Minitest::Test
     assert_equal data[:id], transaction.id
     assert_equal data[:invoice_id], transaction.invoice_id
     assert_equal data[:credit_card_number], transaction.credit_card_number
-    assert_equal data[:credit_card_expiration_date], transaction.credit_card_number
+    assert_equal data[:credit_card_expiration_date], transaction.credit_card_expiration_date
     assert_equal data[:result], transaction.result
     assert_equal data[:created_at], transaction.created_at
     assert_equal data[:updated_at], transaction.updated_at

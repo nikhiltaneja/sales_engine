@@ -43,3 +43,45 @@ class Invoice
   end
 
 end
+
+class Item 
+  attr_reader :id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at
+
+  def initialize(input = {})
+    @id = input[:id]
+    @name = input[:name]
+    @description = input[:description]
+    @unit_price = input[:unit_price]
+    @merchant_id = input[:merchant_id]
+    @created_at = input[:created_at]
+    @updated_at = input[:updated_at]
+  end
+
+end
+
+class Merchant 
+  attr_reader :id, :name, :created_at, :updated_at
+
+  def initialize(input = {})
+    @id = input[:id]
+    @name = input[:name]
+    @created_at = input[:created_at]
+    @updated_at = input[:updated_at]
+  end
+
+end
+
+class Transaction 
+  attr_reader :id, :invoice_id, :credit_card_number, :credit_card_expiration_date, :result, :created_at, :updated_at
+
+  def initialize(input = {})
+    @id = input[:id]
+    @invoice_id = input[:invoice_id]
+    @credit_card_number = input[:credit_card_number]
+    @credit_card_expiration_date = input[:credit_card_expiration_date]
+    @result = input[:result]
+    @created_at = input[:created_at]
+    @updated_at = input[:updated_at]
+  end
+  
+end
