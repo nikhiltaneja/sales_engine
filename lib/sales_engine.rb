@@ -103,15 +103,34 @@ class MerchantRepository
     all.sample
   end
 
-  # def find_by_id(criteria)
-  #   find_by(:id,criteria)
-  # end
-
-  def find_by(attribute, criteria)
+  def find_by(attribute, match)
     all.find do |vendor| 
-      vendor.send(attribute.to_sym) == criteria
+      vendor.send(attribute.to_sym).downcase.strip == match.downcase.strip
     end
   end
+
+  def find_by_id(match)
+    find_by(:id,match)
+  end
+
+  def find_by_name(match)
+    find_by(:name,match)
+  end
+
+  def find_by_created_at(match)
+    find_by(:created_at,match)
+  end
+
+  def find_by_updated_at(match)
+    find_by(:updated_at,match)
+  end
+  
+  def find_all_by(attribute, match)
+    all.find_all do |vendor| 
+      vendor.send(attribute.to_sym).downcase.strip == match.downcase.strip
+    end
+  end
+
 
   private
 
