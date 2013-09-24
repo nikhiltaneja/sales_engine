@@ -1,6 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'csv'
 
 class Customer
   attr_reader :id, :first_name, :last_name, :created_at, :updated_at
@@ -85,3 +86,35 @@ class Transaction
   end
   
 end
+
+class MerchantRepository
+  attr_reader :filename
+
+  def initialize(filename = nil)
+    @filename = filename
+  end
+
+
+  def all
+    @all ||= build_merchants
+  end
+
+
+
+  # def random
+  #   data.sample
+  # end
+
+  private
+
+  def build_merchants
+    data.map do |row|
+      Merchant.new(row)
+    end
+  end
+
+  def data
+    @data ||= CSV.open(filename, headers: true, header_converters: :symbol)
+  end
+
+end 
