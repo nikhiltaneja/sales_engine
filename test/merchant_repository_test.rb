@@ -11,7 +11,6 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_it_exists
-    @repo
     assert_kind_of MerchantRepository, @repo
   end
 
@@ -80,10 +79,32 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal data[:name], repo.find_all_by(attribute, match).first.name
     assert_equal data[:created_at], repo.find_all_by(attribute, match).first.created_at
     assert_equal data[:updated_at], repo.find_all_by(attribute, match).first.updated_at
-    
+
     assert_equal 2, repo.find_all_by(attribute, match).count
 
     merchant = repo.find_by_name("Williamson Group")
+    assert_equal true, repo.find_all_by(attribute, match).include?(merchant)
+  end
+
+  def test_find_all_by_attribute_with_changed_case_and_space
+    data = {
+      id:         "5",
+      name:       "Williamson Group",
+      created_at: "2012-03-27 14:53:59 UTC",
+      updated_at: "2012-03-27 14:53:59 UTC"
+    }
+
+    attribute = "name"
+    match = "WiLliaMson GrOup "
+
+    assert_equal data[:id], repo.find_all_by(attribute, match).first.id
+    assert_equal data[:name], repo.find_all_by(attribute, match).first.name
+    assert_equal data[:created_at], repo.find_all_by(attribute, match).first.created_at
+    assert_equal data[:updated_at], repo.find_all_by(attribute, match).first.updated_at
+
+    assert_equal 2, repo.find_all_by(attribute, match).count
+
+    merchant = repo.find_by_name("WiLliaMson GrOup")
     assert_equal true, repo.find_all_by(attribute, match).include?(merchant)
   end
 

@@ -94,7 +94,6 @@ class MerchantRepository
     @filename = filename
   end
 
-
   def all
     @all ||= build_merchants
   end
@@ -131,6 +130,21 @@ class MerchantRepository
     end
   end
 
+  def find_all_by_id(match)
+    find_all_by(:id, match)
+  end
+
+  def find_all_by_name(match)
+    find_all_by(:name, match)
+  end
+
+  def find_all_by_created_at(match)
+    find_all_by(:created_at, match)
+  end
+
+  def find_all_by_updated_at(match)
+    find_all_by(:updated_at, match)
+  end
 
   private
 
@@ -145,3 +159,4 @@ class MerchantRepository
   end
 
 end 
+
