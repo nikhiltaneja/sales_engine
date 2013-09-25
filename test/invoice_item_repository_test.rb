@@ -24,14 +24,14 @@ class InvoiceItemRepositoryTest < Minitest::Test
     assert_equal "1", invoice_item.invoice_id
   end
 
-  def test_random_merchant
-    merchant_one = repo.random
-    merchant_two = repo.random
+  def test_random_invoice_item
+    invoice_item_one = repo.random
+    invoice_item_two = repo.random
     10.times do
-      break if merchant_one.id != merchant_two.id
-      merchant_two = repo.random
+      break if invoice_item_one.id != invoice_item_two.id
+      invoice_item_two = repo.random
     end
-    refute_equal merchant_one.id, merchant_two.id
+    refute_equal invoice_item_one.id, invoice_item_two.id
   end
 
   def test_find_by_attribute
