@@ -23,16 +23,20 @@ class ItemRepository
     find_by(:id,match)
   end
 
-  def find_by_item_id(match)
-    find_by(:item_id,match)
+  def find_by_name(match)
+    find_by(:name,match)
   end
 
-  def find_by_quantity(match)
-    find_by(:quantity,match)
+  def find_by_description(match)
+    find_by(:description,match)
   end
 
   def find_by_unit_price(match)
     find_by(:unit_price,match)
+  end
+
+  def find_by_merchant_id(match)
+    find_by(:merchant_id,match)
   end
 
   def find_by_created_at(match)
@@ -53,16 +57,20 @@ class ItemRepository
     find_all_by(:id,match)
   end
 
-  def find_all_by_item_id(match)
-    find_all_by(:item_id,match)
+  def find_all_by_name(match)
+    find_all_by(:name,match)
   end
 
-  def find_all_by_quantity(match)
-    find_all_by(:quantity,match)
+  def find_all_by_description(match)
+    find_all_by(:description,match)
   end
 
   def find_all_by_unit_price(match)
     find_all_by(:unit_price,match)
+  end
+
+  def find_all_by_merchant_id(match)
+    find_all_by(:merchant_id,match)
   end
 
   def find_all_by_created_at(match)

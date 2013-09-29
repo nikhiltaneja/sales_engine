@@ -18,34 +18,30 @@ require_relative 'transaction_repository'
 
 
 class SalesEngine
-  attr_reader :dir
 
-  def initialize(dir = './data/')
-    @dir = dir
-  end
 
   def merchant_repository
-    MerchantRepository.new(@dir + 'merchants.csv')
+    MerchantRepository.new('./data/merchants.csv')
   end
 
-  def customer_repository
-    CustomerRepository.new(@dir + 'customers.csv')
+  def customer_repository 
+    CustomerRepository.new('./data/customers.csv')
   end
 
   def invoice_repository
-    InvoiceRepository.new(@dir + 'invoices.csv')
+    InvoiceRepository.new('./data/invoices.csv')
   end
 
   def item_repository
-    ItemRepository.new(@dir + 'items.csv')
+    ItemRepository.new('./data/items.csv')
   end
 
   def invoice_item_repository
-    InvoiceItemRepository.new(@dir + 'invoice_items.csv')
+    InvoiceItemRepository.new('./data/invoice_items.csv')
   end
 
   def transaction_repository
-    TransactionRepository.new(@dir + 'transactions.csv')
+    TransactionRepository.new('./data/transactions.csv')
   end
 
 

@@ -8,4 +8,12 @@ class Merchant
     @updated_at = input[:updated_at]
   end
 
+  def items
+    engine = SalesEngine.new
+    items = engine.item_repository.all
+    items.find_all do |item|
+      item.merchant_id == self.id
+    end
+  end
+
 end

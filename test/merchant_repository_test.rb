@@ -64,6 +64,7 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal data[:updated_at], repo.find_by(attribute, match).updated_at
   end
 
+
   def test_find_all_by_attribute
     data = {
       id:         "5",

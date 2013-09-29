@@ -23,4 +23,10 @@ class MerchantTest < Minitest::Test
     assert_equal data[:updated_at], merchant.updated_at
   end
 
+  def test_it_can_find_items_based_on_merchant_id
+    engine = SalesEngine.new
+    items = engine.item_repository.find_all_by_merchant_id("1")
+    assert_equal 15, items.count
+  end
+
 end
