@@ -29,4 +29,36 @@ class InvoiceItemTest < Minitest::Test
     assert_equal data[:updated_at], invoice_item.updated_at
   end
 
+  def test_it_can_return_the_invoice_instance_associated_with_this_object
+    data = {:id => '1',
+            :item_id => '539',
+            :invoice_id => '1',
+            :quantity => '5',
+            :unit_price => '13635',
+            :created_at => '2012-03-27 14:54:09 UTC',
+            :updated_at => '2012-03-27 14:54:09 UTC'}
+    engine = SalesEngine.new
+    invoice_item = InvoiceItem.new(data)
+    invoices = engine.invoice_repository.find_all_by_id("1")
+    invoice_item_invoice_count = invoice_item.invoice.count 
+    assert_equal invoice_item_invoice_count, invoices.count
+  end
+
+  def test_it_can_return_the_item_instance_associated_with_this_object
+    data = {:id => '1',
+            :item_id => '539',
+            :invoice_id => '1',
+            :quantity => '5',
+            :unit_price => '13635',
+            :created_at => '2012-03-27 14:54:09 UTC',
+            :updated_at => '2012-03-27 14:54:09 UTC'}
+    engine = SalesEngine.new
+    invoice_item = InvoiceItem.new(data)
+    invoices = engine.invoice_repository.find_all_by_id("1")
+    invoice_item_item_count = invoice_item.item.count 
+    assert_equal invoice_item_item_count, invoices.count
+  end
+
+
+
 end

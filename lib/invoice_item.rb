@@ -11,4 +11,20 @@ class InvoiceItem
     @updated_at = input[:updated_at]
   end
 
+  def invoice
+    engine = SalesEngine.new
+    invoices = engine.invoice_repository.all
+    invoices.find_all do |invoice|
+      invoice.id == self.invoice_id
+    end
+  end
+
+  def item 
+    engine = SalesEngine.new
+    items = engine.invoice_repository.all
+    items.find_all do |item|
+      item.id == self.item_id
+    end
+  end
+
 end
