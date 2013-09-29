@@ -29,4 +29,19 @@ class TransactionTest < Minitest::Test
     assert_equal data[:updated_at], transaction.updated_at
   end
 
+  def test_it_returns_the_instance_of_invoice_associated_with_this_object
+    data = {:id => '3',
+            :invoice_id =>  '4',
+            :credit_card_number => '4354495077693036',
+            :credit_card_expiration_date => "",
+            :result =>  'success',
+            :created_at => '2012-03-27 14:54:10 UTC',
+            :updated_at => '2012-03-27 14:54:10 UTC'}
+    engine = SalesEngine.new
+    transaction = Transaction.new(data)
+    transaction_invoices = engine.transaction_repository.find_all_by_id("3")
+    transaction_invoice_count = transaction.invoice.count 
+    assert_equal transaction_invoices.count, transaction_invoice_count
+  end
+
 end

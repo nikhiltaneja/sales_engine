@@ -12,5 +12,13 @@ class Transaction
     @created_at = input[:created_at]
     @updated_at = input[:updated_at]
   end
+
+  def invoice
+    engine = SalesEngine.new
+    invoices = engine.invoice_repository.all
+    invoices.find_all do |invoice|
+      invoice.id == self.invoice_id
+    end
+  end
   
 end
