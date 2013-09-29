@@ -9,4 +9,12 @@ class Customer
     @updated_at = input[:updated_at]
   end
 
+  def invoices
+    engine = SalesEngine.new
+    invoices = engine.invoice_repository.all
+    invoices.find_all do |invoice|
+      invoice.customer_id == self.id
+    end
+  end
+
 end

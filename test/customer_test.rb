@@ -24,4 +24,17 @@ class CustomerTest < Minitest::Test
     assert_equal data[:updated_at], customer.updated_at
   end
 
+  def test_it_can_find_invoices_from_customer_id
+    data = {:id => '10', 
+            :first_name => 'Ramona', 
+            :last_name => 'Reynolds',
+            :created_at => '2012-03-27 14:54:09 UTC',
+            :updated_at => '2012-03-27 14:54:09 UTC'}
+    engine = SalesEngine.new
+    customer = Customer.new(data)
+    invoices = engine.invoice_repository.find_all_by_customer_id("10")
+    customer_count = customer.invoices.count
+    assert_equal customer_count, invoices.count
+  end
+
 end
