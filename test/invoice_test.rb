@@ -27,4 +27,81 @@ class InvoiceTest < Minitest::Test
     assert_equal data[:updated_at], invoice.updated_at
   end
 
+  def test_it_can_find_transactions_based_on_invoice_id
+    data = {:id => '1',
+            :customer_id => '1',
+            :merchant_id => '26',
+            :status => 'shipped',
+            :created_at => '2012-03-25 09:54:09 UTC',
+            :updated_at => '2012-03-25 09:54:09 UTC'
+        }
+    engine = SalesEngine.new
+    invoice = Invoice.new(data)
+    transactions = engine.transaction_repository.find_all_by_invoice_id("1")
+    invoice_count = invoice.transactions.count
+    assert_equal invoice_count, transactions.count
+  end
+
+  def test_it_can_find_invoice_items_based_on_invoice_id
+    data = {:id => '1',
+            :customer_id => '1',
+            :merchant_id => '26',
+            :status => 'shipped',
+            :created_at => '2012-03-25 09:54:09 UTC',
+            :updated_at => '2012-03-25 09:54:09 UTC'
+        }
+    engine = SalesEngine.new
+    invoice = Invoice.new(data)
+    invoice_items = engine.invoice_item_repository.find_all_by_invoice_id("1")
+    invoice_count = invoice.invoice_items.count
+    assert_equal invoice_count, invoice_items.count
+  end
+
+  # def test_it_can_find_items_based_on_invoice_items
+  #   data = {:id => '1',
+  #           :customer_id => '1',
+  #           :merchant_id => '26',
+  #           :status => 'shipped',
+  #           :created_at => '2012-03-25 09:54:09 UTC',
+  #           :updated_at => '2012-03-25 09:54:09 UTC'
+  #       }
+  #   engine = SalesEngine.new
+  #   invoice = Invoice.new(data)
+  #   items = engine.invoice_item_repository.find_all_by_item_id("539")
+  #   invoice_count = invoice.items.count
+  #   assert_equal invoice_count, items.count
+    
+  #end
+
+  def test_it_can_find_customer_based_on_customer_id
+    data = {:id => '1',
+            :customer_id => '1',
+            :merchant_id => '26',
+            :status => 'shipped',
+            :created_at => '2012-03-25 09:54:09 UTC',
+            :updated_at => '2012-03-25 09:54:09 UTC'
+        }
+    engine = SalesEngine.new
+    invoice = Invoice.new(data)
+    customers = engine.customer_repository.find_all_by_id("1")
+    invoice_count = invoice.customers.count
+    assert_equal invoice_count, customers.count
+  end
+
+  def test_it_can_find_merchant_based_on_merchant_id
+    data = {:id => '1',
+            :customer_id => '1',
+            :merchant_id => '26',
+            :status => 'shipped',
+            :created_at => '2012-03-25 09:54:09 UTC',
+            :updated_at => '2012-03-25 09:54:09 UTC'
+        }
+    engine = SalesEngine.new
+    invoice = Invoice.new(data)
+    merchants = engine.merchant_repository.find_all_by_id("26")
+    invoice_count = invoice.merchants.count
+    assert_equal invoice_count, merchants.count
+  end
+
+
 end
