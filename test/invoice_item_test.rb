@@ -37,7 +37,7 @@ class InvoiceItemTest < Minitest::Test
             :unit_price => '13635',
             :created_at => '2012-03-27 14:54:09 UTC',
             :updated_at => '2012-03-27 14:54:09 UTC'}
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./test/fixtures")
     invoice_item = InvoiceItem.new(data)
     invoices = engine.invoice_repository.find_all_by_id("1")
     invoice_item_invoice_count = invoice_item.invoice.count 
@@ -52,7 +52,7 @@ class InvoiceItemTest < Minitest::Test
             :unit_price => '13635',
             :created_at => '2012-03-27 14:54:09 UTC',
             :updated_at => '2012-03-27 14:54:09 UTC'}
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./test/fixtures")
     invoice_item = InvoiceItem.new(data)
     invoices = engine.invoice_repository.find_all_by_id("1")
     invoice_item_item_count = invoice_item.item.count 

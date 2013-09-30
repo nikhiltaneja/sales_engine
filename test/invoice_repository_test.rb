@@ -87,7 +87,7 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal data[:created_at], repo.find_all_by(attribute, match).first.created_at
     assert_equal data[:updated_at], repo.find_all_by(attribute, match).first.updated_at
 
-    assert_equal 9, repo.find_all_by(attribute, match).count
+    assert_equal 10, repo.find_all_by(attribute, match).count
 
     invoice = repo.find_by_merchant_id("26")
     assert_equal true, repo.find_all_by(attribute, match).include?(invoice)
@@ -110,7 +110,7 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal data[:created_at], repo.find_all_by(attribute, match).first.created_at
     assert_equal data[:updated_at], repo.find_all_by(attribute, match).first.updated_at
 
-    assert_equal 9, repo.find_all_by(attribute, match).count
+    assert_equal 10, repo.find_all_by(attribute, match).count
 
     invoice = repo.find_by_merchant_id("26")
     assert_equal true, repo.find_all_by(attribute, match).include?(invoice)

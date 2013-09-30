@@ -1,8 +1,9 @@
 class ItemRepository
-  attr_reader :filename
+  attr_reader :filename, :engine
 
-  def initialize(filename = nil)
+  def initialize(filename = nil, engine=SalesEngine.new)
     @filename = filename
+    @engine = engine
   end
 
   def all
@@ -85,7 +86,7 @@ class ItemRepository
 
   def build_items
     data.map do |row|
-      Item.new(row)
+      Item.new(row, engine)
     end
   end
 

@@ -1,7 +1,7 @@
 class InvoiceItem
-  attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at
+  attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at, :engine
 
-  def initialize(input = {})
+  def initialize(input = {}, engine=SalesEngine.new)
     @id = input[:id]
     @item_id = input[:item_id]
     @invoice_id = input[:invoice_id]
@@ -9,10 +9,10 @@ class InvoiceItem
     @unit_price = input[:unit_price]
     @created_at = input[:created_at]
     @updated_at = input[:updated_at]
+    @engine = engine
   end
 
   def invoice
-    engine = SalesEngine.new
     invoices = engine.invoice_repository.all
     invoices.find_all do |invoice|
       invoice.id == self.invoice_id
@@ -20,7 +20,6 @@ class InvoiceItem
   end
 
   def item 
-    engine = SalesEngine.new
     items = engine.invoice_repository.all
     items.find_all do |item|
       item.id == self.item_id

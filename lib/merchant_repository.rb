@@ -1,8 +1,9 @@
 class MerchantRepository
-  attr_reader :filename
+  attr_reader :filename, :engine
 
-  def initialize(filename = nil)
+  def initialize(filename = nil, engine=SalesEngine.new)
     @filename = filename
+    @engine = engine
   end
 
   def all
@@ -61,7 +62,7 @@ class MerchantRepository
 
   def build_merchants
     data.map do |row|
-      Merchant.new(row)
+      Merchant.new(row, engine)
     end
   end
 

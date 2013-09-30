@@ -37,7 +37,7 @@ class TransactionTest < Minitest::Test
             :result =>  'success',
             :created_at => '2012-03-27 14:54:10 UTC',
             :updated_at => '2012-03-27 14:54:10 UTC'}
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./test/fixtures")
     transaction = Transaction.new(data)
     transaction_invoices = engine.transaction_repository.find_all_by_id("3")
     transaction_invoice_count = transaction.invoice.count 

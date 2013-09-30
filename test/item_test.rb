@@ -30,33 +30,15 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_returns_a_collection_of_invoice_items_associated_with_this_object
-    data = {:id => '2',
-            :name => 'Item Autem Minima',
-            :description => 'Cumque consequuntur ad. Fuga tenetur illo molestias enim aut iste. Provident quo hic aut. Aut quidem voluptates dolores. Dolorem quae ab alias tempora.',
-            :unit_price => '67076',
-            :merchant_id => '1',
-            :created_at => '2012-03-27 14:53:59 UTC',
-            :updated_at => '2012-03-27 14:53:59 UTC'}
-    engine = SalesEngine.new
-    item = Item.new(data)
-    invoice_items = engine.invoice_item_repository.find_all_by_item_id("2")
-    invoice_item_count = item.invoice_items.count
-    assert_equal invoice_items.count, invoice_item_count
+    engine = SalesEngine.new("./test/fixtures")
+    invoice_items = engine.invoice_item_repository.find_all_by_item_id("523")
+    assert_equal 1, invoice_items.count
   end
 
   def test_it_returns_an_instance_of_merchant_associated_with_this_object
-    data = {:id => '2',
-            :name => 'Item Autem Minima',
-            :description => 'Cumque consequuntur ad. Fuga tenetur illo molestias enim aut iste. Provident quo hic aut. Aut quidem voluptates dolores. Dolorem quae ab alias tempora.',
-            :unit_price => '67076',
-            :merchant_id => '1',
-            :created_at => '2012-03-27 14:53:59 UTC',
-            :updated_at => '2012-03-27 14:53:59 UTC'}
-    engine = SalesEngine.new
-    merchant_items = Item.new(data)
+    engine = SalesEngine.new("./test/fixtures")
     merchants = engine.merchant_repository.find_all_by_id("1")
-    merchant_item_count = merchant_items.merchant.count
-    assert_equal merchant_item_count, merchants.count
+    assert_equal 1, merchants.count
   end
 
 

@@ -1,15 +1,15 @@
 class Merchant 
-  attr_reader :id, :name, :created_at, :updated_at
+  attr_reader :id, :name, :created_at, :updated_at, :engine
 
-  def initialize(input = {})
+  def initialize(input = {}, engine=SalesEngine.new)
     @id = input[:id]
     @name = input[:name]
     @created_at = input[:created_at]
     @updated_at = input[:updated_at]
+    @engine = engine
   end
 
   def items
-    engine = SalesEngine.new
     items = engine.item_repository.all
     items.find_all do |item|
       item.merchant_id == self.id
@@ -17,7 +17,6 @@ class Merchant
   end
 
   def invoices
-    engine = SalesEngine.new
     invoices = engine.invoice_repository.all
     invoices.find_all do |invoice|
       invoice.merchant_id == self.id

@@ -1,9 +1,10 @@
 class TransactionRepository
 
-  attr_reader :filename
+  attr_reader :filename, :engine
 
-  def initialize(filename = nil)
+  def initialize(filename = nil, engine=SalesEngine.new)
     @filename = filename
+    @engine = engine
   end
 
   def all
@@ -86,7 +87,7 @@ class TransactionRepository
 
   def build_transactions
     data.map do |row|
-      Transaction.new(row)
+      Transaction.new(row, engine)
     end
   end
 
