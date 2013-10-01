@@ -32,21 +32,15 @@ class Invoice
   end
 
   def items
-    engine.item_repository.find_by_id(invoice_items.item_id)
+    engine.item_repository.find_all_by_id(invoice_items.item_id)
   end
 
   def customers
-    customers = engine.customer_repository.all
-    customers.find_all do |customer|
-      customer.id == self.id
-    end
+    engine.customer_repository.find_by_id(id)
   end
 
   def merchants
-    merchants = engine.merchant_repository.all
-    merchants.find_all do |merchant|
-      merchant.id == self.id
-    end
+    engine.merchant_repository.find_by_id(id)
   end
 
 end
