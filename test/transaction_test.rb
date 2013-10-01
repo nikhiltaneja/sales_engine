@@ -38,10 +38,22 @@ class TransactionTest < Minitest::Test
             :created_at => '2012-03-27 14:54:10 UTC',
             :updated_at => '2012-03-27 14:54:10 UTC'}
     engine = SalesEngine.new("./test/fixtures")
-    transaction = Transaction.new(data)
-    transaction_invoices = engine.transaction_repository.find_all_by_id("3")
-    transaction_invoice_count = transaction.invoice.count 
-    assert_equal transaction_invoices.count, transaction_invoice_count
+    transaction = Transaction.new(data, engine)  
+    assert_equal "4", transaction.invoice.id
   end
+
+  def test_it_can_determine_failures
+    data = {:id => '3',
+            :invoice_id =>  '4',
+            :credit_card_number => '4354495077693036',
+            :credit_card_expiration_date => "",
+            :result =>  'failed',
+            :created_at => '2012-03-27 14:54:10 UTC',
+            :updated_at => '2012-03-27 14:54:10 UTC'}
+    transaction = Transaction.new(data)
+    assert_equal true, transaction.failed? 
+  end
+
+ 
 
 end

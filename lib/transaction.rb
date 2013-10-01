@@ -15,10 +15,11 @@ class Transaction
   end
 
   def invoice
-    invoices = engine.invoice_repository.all
-    invoices.find_all do |invoice|
-      invoice.id == self.invoice_id
-    end
+    engine.invoice_repository.find_by_id(invoice_id)
+  end
+
+  def failed?
+    result == "failed"
   end
   
 end
