@@ -58,13 +58,14 @@ class MerchantRepository
     find_all_by(:updated_at, match)
   end
 
-  # def most_revenue(x)
-  #   b = all.sort_by do |merchant|
-  #     merchant.revenue 
-  #   end
-  #   sorted = b.reverse
-  #   sorted[0, x]
-  # end
+  def most_revenue(x)
+    merchants = all.sort_by do |merchant|
+      merchant.revenue 
+      puts merchant.revenue
+    end
+    sorted = merchants.reverse
+    sorted[0, x]
+  end
 
   private
 

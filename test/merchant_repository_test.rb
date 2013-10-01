@@ -109,21 +109,11 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal true, repo.find_all_by(attribute, match).include?(merchant)
   end
 
-
-  # def test_it_can_find_the_merchant_with_the_most_x_revenue
-  #   engine = SalesEngine.new("./test/fixtures")
-  #   # find all invoices by merchant_id
-  #   # then find each invoice id for the merchant_id
-  #   # use invoice_id to call invoice_items that match
-  #   # compare these invoice_id's to tranactions invoice_id 
-  #   # only use the ids that have result == success
-  #   # take the quantitiy of the items & multiply by the price
-  #   # add this all up using inject (this iterates over each element and adds it together) 
-  #   [1,2,3,4].inject {|result, element| result + element }
-  #   # process the price into BigDecimal (don't use Float)
-  #   # store that in an array
-  #   # sort the array on .sort or some similar array method
-  # end
+  def test_it_can_find_the_merchant_with_the_most_x_revenue
+    engine = SalesEngine.new('./data')
+    assert_equal 5, engine.merchant_repository.most_revenue(5).count 
+    puts engine.merchant_repository.most_revenue(5).inspect
+  end
 
 
   #### date expected as : Tue, 20 Mar 2012

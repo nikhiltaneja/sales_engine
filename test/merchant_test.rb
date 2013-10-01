@@ -36,8 +36,26 @@ class MerchantTest < Minitest::Test
     assert_equal 1, invoices.count
   end
 
-  # def test_it_can_return_the_total_revenue_for_this_merchant
-    
-  # end
+  def test_it_can_calculate_the_total_revenue_for_this_merchant
+    data = {:id => '26',
+            :name =>  'Bernhard-Johns',
+            :created_at => '2012-03-27 14:53:59 UTC',
+            :updated_at => '2012-03-27 14:53:59 UTC'}
+
+    engine = SalesEngine.new("./test/fixtures")
+    merchant = Merchant.new(data, engine)
+    assert_equal 2294051, merchant.calculate_revenue
+  end
+
+  def test_it_can_return_the_total_revenue_for_this_merchant_in_dollars
+    data = {:id => '26',
+            :name =>  'Bernhard-Johns',
+            :created_at => '2012-03-27 14:53:59 UTC',
+            :updated_at => '2012-03-27 14:53:59 UTC'}
+
+    engine = SalesEngine.new("./test/fixtures")
+    merchant = Merchant.new(data, engine)
+    assert_equal 22940.51, merchant.revenue
+  end
 
 end

@@ -10,17 +10,23 @@ class Merchant
   end
 
   def items
-    items = engine.item_repository.all
-    items.find_all do |item|
-      item.merchant_id == self.id
-    end
+    engine.item_repository.find_all_by_merchant_id(id)
   end
 
   def invoices
-    invoices = engine.invoice_repository.all
-    invoices.find_all do |invoice|
-      invoice.merchant_id == self.id
-    end
+    engine.invoice_repository.find_all_by_merchant_id(id)
+  end
+
+  def calculate_revenue
+    invoices.map do |invoice|
+      if invoice.successful_transactions
+        invoice.calculate_invoice_total
+      end
+    end.reduce(0,:+)
+  end
+
+  def revenue
+    BigDecimal(calculate_revenue) / 100
   end
 
 end
