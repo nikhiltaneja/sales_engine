@@ -39,21 +39,11 @@ class InvoiceTest < Minitest::Test
     assert_equal 8, invoice_items.count
   end
 
-  # def test_it_can_find_items_based_on_invoice_items
-  #   data = {:id => '1',
-  #           :customer_id => '1',
-  #           :merchant_id => '26',
-  #           :status => 'shipped',
-  #           :created_at => '2012-03-25 09:54:09 UTC',
-  #           :updated_at => '2012-03-25 09:54:09 UTC'
-  #       }
-  #   engine = SalesEngine.new("./test/fixtures")
-  #   invoice = Invoice.new(data)
-  #   items = engine.invoice_item_repository.find_all_by_item_id("539")
-  #   invoice_count = invoice.items.count
-  #   assert_equal invoice_count, items.count
-    
-  #end
+  def test_it_can_find_items_based_on_invoice_items
+    engine = SalesEngine.new("./test/fixtures")
+    items = engine.invoice_item_repository.find_all_by_item_id("539")
+    assert_equal 1, items.count
+  end
 
   def test_it_can_find_customer_based_on_customer_id
     engine = SalesEngine.new("./test/fixtures")
