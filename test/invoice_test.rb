@@ -75,5 +75,18 @@ class InvoiceTest < Minitest::Test
     assert_equal 1, merchants.count
   end
 
+  def test_it_can_generate_invoice_total
+    data = {:id => '1',
+            :customer_id => '1',
+            :merchant_id => '26',
+            :status => 'shipped',
+            :created_at => '2012-03-25 09:54:09 UTC',
+            :updated_at => '2012-03-25 09:54:09 UTC'
+    }
+    engine = SalesEngine.new("./test/fixtures") 
+    invoice = Invoice.new(data, engine)
+    assert_equal 2106777, invoice.calculate_invoice_total
+  end
+
 
 end
