@@ -36,4 +36,8 @@ class MerchantTest < Minitest::Test
     assert_equal 1, invoices.count
   end
 
+  # def test_it_can_return_the_total_revenue_for_this_merchant
+    
+  # end
+
 end

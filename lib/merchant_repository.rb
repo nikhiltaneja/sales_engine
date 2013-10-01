@@ -1,7 +1,7 @@
 class MerchantRepository
   attr_reader :filename, :engine
 
-  def initialize(filename = nil, engine=SalesEngine.new)
+  def initialize(filename, engine=SalesEngine.new)
     @filename = filename
     @engine = engine
   end
@@ -37,8 +37,8 @@ class MerchantRepository
   end
   
   def find_all_by(attribute, match)
-    all.find_all do |vendor| 
-      vendor.send(attribute.to_sym).downcase.strip == match.downcase.strip
+    all.find_all do |merchant| 
+      merchant.send(attribute.to_sym).downcase.strip == match.downcase.strip
     end
   end
 
@@ -57,6 +57,14 @@ class MerchantRepository
   def find_all_by_updated_at(match)
     find_all_by(:updated_at, match)
   end
+
+  # def most_revenue(x)
+  #   b = all.sort_by do |merchant|
+  #     merchant.revenue 
+  #   end
+  #   sorted = b.reverse
+  #   sorted[0, x]
+  # end
 
   private
 
