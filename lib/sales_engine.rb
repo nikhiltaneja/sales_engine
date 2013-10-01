@@ -25,6 +25,9 @@ class SalesEngine
     @dir = dir
   end
 
+  def startup 
+  end
+
   def merchant_repository
     MerchantRepository.new("#{dir}/merchants.csv", self)
   end
