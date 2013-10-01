@@ -12,23 +12,27 @@ class Invoice
   end
 
   def transactions
-    transactions = engine.transaction_repository.all
-    transactions.find_all do |transaction|
-      transaction.invoice_id == self.id
+    engine.transaction_repository.find_all_by_invoice_id(id)
+  end
+
+  def successful_transactions
+    transactions.select do |transaction|
+      transaction.result == "success"
+    end
+  end
+
+  def failed_transactions
+    transactions.select do |transaction|
+      transaction.result == "failed"
     end
   end
 
   def invoice_items
-    invoice_items = engine.invoice_item_repository.all
-    invoice_items.find_all do |invoice_item|
-      invoice_item.invoice_id == self.id
-    end
+    engine.invoice_item_repository.find_all_by_invoice_id(id)
   end
 
   def items
-    invoice_items.map do |invoice_item|
-      engine.item_repository.find_by_id(invoice_item.item_id)
-    end
+    engine.item_repository.find_by_id(invoice_items.item_id)
   end
 
   def customers
