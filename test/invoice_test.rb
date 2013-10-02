@@ -6,7 +6,14 @@ require './lib/invoice'
 class InvoiceTest < Minitest::Test
 
   def test_it_exists
-    invoice = Invoice.new
+    data = {:id => '1',
+            :customer_id => '1',
+            :merchant_id => '26',
+            :status => 'shipped',
+            :created_at => '2012-03-25',
+            :updated_at => '2012-03-25 09:54:09 UTC'
+    }
+    invoice = Invoice.new(data)
     assert_kind_of Invoice, invoice
   end
 
@@ -15,7 +22,7 @@ class InvoiceTest < Minitest::Test
             :customer_id => '1',
             :merchant_id => '26',
             :status => 'shipped',
-            :created_at => '2012-03-25 09:54:09 UTC',
+            :created_at => '2012-03-25',
             :updated_at => '2012-03-25 09:54:09 UTC'
     }
     invoice = Invoice.new(data)
@@ -80,7 +87,7 @@ class InvoiceTest < Minitest::Test
             :customer_id => '1',
             :merchant_id => '26',
             :status => 'shipped',
-            :created_at => '2012-03-25 09:54:09 UTC',
+            :created_at => '2012-03-25',
             :updated_at => '2012-03-25 09:54:09 UTC'
     }
     engine = SalesEngine.new("./test/fixtures") 

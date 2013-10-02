@@ -117,12 +117,12 @@ class MerchantRepositoryTest < Minitest::Test
 
   def test_it_returns_the_total_revenue_for_that_date_across_all_merchants_failed_transaction
     engine = SalesEngine.new("./test/fixtures")
-    assert_equal BigDecimal("0"), engine.merchant_repository.revenue('2012-03-12 05:54:09 UTC')
+    assert_equal BigDecimal("0"), engine.merchant_repository.revenue('2012-03-12')
   end
 
   def test_it_returns_the_total_revenue_for_that_date_across_all_merchants_successful_transaction
     engine = SalesEngine.new("./test/fixtures")
-    assert_equal BigDecimal("21067.77"), engine.merchant_repository.revenue('2012-03-25 09:54:09 UTC')
+    assert_equal BigDecimal("21067.77"), engine.merchant_repository.revenue('2012-03-25')
   end
 
 end

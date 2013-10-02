@@ -6,7 +6,7 @@ class Invoice
     @customer_id = input[:customer_id]
     @merchant_id = input[:merchant_id]
     @status = input[:status]
-    @created_at = input[:created_at]
+    @created_at = input[:created_at].split.first
     @updated_at = input[:updated_at]
     @engine = engine
   end

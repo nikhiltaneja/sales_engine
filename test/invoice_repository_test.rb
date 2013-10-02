@@ -39,7 +39,7 @@ class InvoiceRepositoryTest < Minitest::Test
             :customer_id => "1",
             :merchant_id => "26",
             :status => "shipped",
-            :created_at => "2012-03-25 09:54:09 UTC",
+            :created_at => "2012-03-25",
             :updated_at => "2012-03-25 09:54:09 UTC"}
 
     attribute = "customer_id"
@@ -57,7 +57,7 @@ class InvoiceRepositoryTest < Minitest::Test
             :customer_id => "1",
             :merchant_id => "26",
             :status => "shipped",
-            :created_at => "2012-03-25 09:54:09 UTC",
+            :created_at => "2012-03-25",
             :updated_at => "2012-03-25 09:54:09 UTC"}
 
     attribute = "status"
@@ -75,7 +75,7 @@ class InvoiceRepositoryTest < Minitest::Test
             :customer_id => "1",
             :merchant_id => "26",
             :status => "shipped",
-            :created_at => "2012-03-25 09:54:09 UTC",
+            :created_at => "2012-03-25",
             :updated_at => "2012-03-25 09:54:09 UTC"}
 
     attribute = "status"
@@ -98,7 +98,7 @@ class InvoiceRepositoryTest < Minitest::Test
             :customer_id => "1",
             :merchant_id => "26",
             :status => "shipped",
-            :created_at => "2012-03-25 09:54:09 UTC",
+            :created_at => "2012-03-25",
             :updated_at => "2012-03-25 09:54:09 UTC"}
 
     attribute = "status"
