@@ -110,9 +110,8 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_the_merchant_with_the_most_x_revenue
-    engine = SalesEngine.new('./data')
+    engine = SalesEngine.new("./test/fixtures")
     assert_equal 5, engine.merchant_repository.most_revenue(5).count 
-    puts engine.merchant_repository.most_revenue(5).inspect
   end
 
 

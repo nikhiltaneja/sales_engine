@@ -2,6 +2,7 @@ gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/merchant'
+require './lib/sales_engine'
 
 class MerchantTest < Minitest::Test
 
@@ -55,7 +56,29 @@ class MerchantTest < Minitest::Test
 
     engine = SalesEngine.new("./test/fixtures")
     merchant = Merchant.new(data, engine)
-    assert_equal 22940.51, merchant.revenue
+    assert_equal BigDecimal("22940.51"), merchant.revenue
+  end
+
+  def test_it_can_return_the_total_revenue_for_this_merchant_by_date_in_dollars
+    data = {:id => '26',
+            :name =>  'Bernhard-Johns',
+            :created_at => '2012-03-27 14:53:59 UTC',
+            :updated_at => '2012-03-27 14:53:59 UTC'}
+
+    engine = SalesEngine.new("./test/fixtures")
+    merchant = Merchant.new(data, engine)
+    assert_equal BigDecimal("21067.77"), merchant.revenue('2012-03-25 09:54:09 UTC')
+  end
+
+  def test_it_can_return_the_total_revenue_for_this_merchant_by_date_in_dollars_second_test
+    data = {:id => '26',
+            :name =>  'Bernhard-Johns',
+            :created_at => '2012-03-27 14:53:59 UTC',
+            :updated_at => '2012-03-27 14:53:59 UTC'}
+
+    engine = SalesEngine.new("./test/fixtures")
+    merchant = Merchant.new(data, engine)
+    assert_equal BigDecimal("1872.74"), merchant.revenue('2012-03-12 05:54:09 UTC')
   end
 
 end

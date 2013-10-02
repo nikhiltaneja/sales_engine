@@ -46,7 +46,7 @@ class Invoice
   def calculate_invoice_total
     invoice_items.map do |invoice_item|
       invoice_item.quantity.to_i * invoice_item.unit_price.to_i
-    end.reduce(0,:+)
+    end.reduce(:+)
   end
 
 end

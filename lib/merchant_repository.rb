@@ -60,8 +60,7 @@ class MerchantRepository
 
   def most_revenue(x)
     merchants = all.sort_by do |merchant|
-      merchant.revenue 
-      puts merchant.revenue
+      merchant.revenue
     end
     sorted = merchants.reverse
     sorted[0, x]
