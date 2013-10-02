@@ -45,7 +45,7 @@ class MerchantTest < Minitest::Test
 
     engine = SalesEngine.new("./test/fixtures")
     merchant = Merchant.new(data, engine)
-    assert_equal 2294051, merchant.calculate_revenue
+    assert_equal 2106777, merchant.calculate_revenue
   end
 
   def test_it_can_return_the_total_revenue_for_this_merchant_in_dollars
@@ -56,10 +56,10 @@ class MerchantTest < Minitest::Test
 
     engine = SalesEngine.new("./test/fixtures")
     merchant = Merchant.new(data, engine)
-    assert_equal BigDecimal("22940.51"), merchant.revenue
+    assert_equal BigDecimal("21067.77"), merchant.revenue
   end
 
-  def test_it_can_return_the_total_revenue_for_this_merchant_by_date_in_dollars
+  def test_it_can_return_the_total_revenue_for_this_merchant_by_date_in_BigDecimal
     data = {:id => '26',
             :name =>  'Bernhard-Johns',
             :created_at => '2012-03-27',
@@ -70,7 +70,7 @@ class MerchantTest < Minitest::Test
     assert_equal BigDecimal("21067.77"), merchant.revenue('2012-03-25')
   end
 
-  def test_it_can_return_the_total_revenue_for_this_merchant_by_date_in_dollars_second_test
+  def test_it_can_return_the_total_revenue_for_this_merchant_by_date_in_BigDecimal_second_test
     data = {:id => '26',
             :name =>  'Bernhard-Johns',
             :created_at => '2012-03-27',
@@ -80,5 +80,15 @@ class MerchantTest < Minitest::Test
     merchant = Merchant.new(data, engine)
     assert_equal BigDecimal("0"), merchant.revenue('2012-03-12')
   end
+
+  # def test_it_can_return_all_customers_with_pending_invoices
+  #   data = {:id => '26',
+  #           :name =>  'Bernhard-Johns',
+  #           :created_at => '2012-03-27',
+  #           :updated_at => '2012-03-27 14:53:59 UTC'}
+  #   engine = SalesEngine.new("./test/fixtures")
+  #   merchant = Merchant.new(data, engine)
+  #   assert_equal 1, merchant.customers_with_pending_invoices.count
+  # end
 
 end

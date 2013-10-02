@@ -1,4 +1,5 @@
 class Invoice 
+
   attr_reader :id, :customer_id, :merchant_id, :status, :created_at, :updated_at, :engine
 
   def initialize(input = {}, engine=SalesEngine.new)
@@ -15,20 +16,14 @@ class Invoice
     engine.transaction_repository.find_all_by_invoice_id(id)
   end
 
-  def successful_transactions
-    transactions.find_all do |transaction|
-      transaction.result == "success"
-    end
+  def pending?
+    !paid?
   end
 
-  def failed_transactions
-    transactions.find_all do |transaction|
-      transaction.result == "failed"
+  def paid?
+    transactions.any? do |transaction|
+      transaction.successful?
     end
-  end
-
-  def successful?
-    successful_transactions.length > 0
   end
 
   def invoice_items
@@ -39,11 +34,17 @@ class Invoice
     engine.item_repository.find_all_by_id(invoice_items.item_id)
   end
 
-  def customers
+  def customer
     engine.customer_repository.find_by_id(id)
   end
 
-  def merchants
+  # def pending_invoice
+  #   failed_transactions.select do |failed|
+  #     failed.invoice_id == self.id
+  #   end
+  # end
+
+  def merchant
     engine.merchant_repository.find_by_id(id)
   end
 

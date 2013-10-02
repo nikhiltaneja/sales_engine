@@ -20,9 +20,25 @@ class Merchant
     engine.invoice_repository.find_all_by_merchant_id(id)
   end
 
+  # def customers_with_pending_invoices
+
+  #   engine.invoice_repository.find_all_by_customer_id() == invoice.pending_invoice.id
+
+  #   invoices.select do |invoice|
+  #     invoice.pending_invoice 
+  #   end
+  # end
+
+
+  def revenue
+    paid_invoices = invoices.select{|i| i.paid?}
+    # add up the totals
+    paid_invoices.inject(:+){|i| i.total}
+  end
+
   def calculate_revenue
     successful_invoices = invoices.find_all do |invoice|
-      invoice.successful_transactions
+      invoice.paid?
     end
     total_invoices(successful_invoices)
   end
@@ -47,7 +63,7 @@ class Merchant
 
   def calculate_revenue_with_date(date)
     successful_invoices = invoices.find_all do |invoice|
-      invoice.successful? && invoice.created_at == date
+      invoice.paid? && invoice.created_at == date
     end
     total_invoices(successful_invoices)
   end

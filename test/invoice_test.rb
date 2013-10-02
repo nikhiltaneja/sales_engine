@@ -40,22 +40,22 @@ class InvoiceTest < Minitest::Test
     assert_equal 1, transactions.count
   end
 
-  def test_it_can_find_successful_transactions_by_id
+  def test_it_can_find_paid?_by_id
     engine = SalesEngine.new("./test/fixtures")
     invoice = engine.invoice_repository.find_by_id("1")
-    assert_equal 1, invoice.successful_transactions.count
+    assert_equal 1, invoice.paid?.count
   end
 
-  def test_it_can_find_successful_transactions
+  def test_it_can_find_paid?
     engine = SalesEngine.new("./test/fixtures")
     invoice = engine.invoice_repository.find_by_id("1")
-    assert_equal "1", invoice.successful_transactions.first.invoice_id
+    assert_equal true, invoice.paid?
   end
 
-  def test_it_can_find_failed_transactions
+  def test_it_can_find_pending?
     engine = SalesEngine.new("./test/fixtures")
     invoice = engine.invoice_repository.find_by_id("9")
-    assert_equal "9", invoice.failed_transactions.first.invoice_id
+    assert_equal true, invoice.pending?
   end
 
   def test_it_can_find_invoice_items_based_on_invoice_id
