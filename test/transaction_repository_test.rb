@@ -90,7 +90,7 @@ class TransactionRepositoryTest < Minitest::Test
     assert_equal data[:created_at], repo.find_all_by(attribute, match).first.created_at
     assert_equal data[:updated_at], repo.find_all_by(attribute, match).first.updated_at
 
-    assert_equal 7, repo.find_all_by(attribute, match).count
+    assert_equal 6, repo.find_all_by(attribute, match).count
 
     transaction = repo.find_by_result("success")
     assert_equal true, repo.find_all_by(attribute, match).include?(transaction)
@@ -114,7 +114,7 @@ class TransactionRepositoryTest < Minitest::Test
     assert_equal data[:created_at], repo.find_all_by(attribute, match).first.created_at
     assert_equal data[:updated_at], repo.find_all_by(attribute, match).first.updated_at
 
-    assert_equal 7, repo.find_all_by(attribute, match).count
+    assert_equal 6, repo.find_all_by(attribute, match).count
 
     transaction = repo.find_by_result("suCceSs ")
     assert_equal true, repo.find_all_by(attribute, match).include?(transaction)

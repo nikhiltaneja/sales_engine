@@ -16,15 +16,19 @@ class Invoice
   end
 
   def successful_transactions
-    transactions.select do |transaction|
+    transactions.find_all do |transaction|
       transaction.result == "success"
     end
   end
 
   def failed_transactions
-    transactions.select do |transaction|
+    transactions.find_all do |transaction|
       transaction.result == "failed"
     end
+  end
+
+  def successful?
+    successful_transactions.length > 0
   end
 
   def invoice_items

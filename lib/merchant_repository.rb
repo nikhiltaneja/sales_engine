@@ -1,4 +1,7 @@
 class MerchantRepository
+
+  require 'bigdecimal'
+
   attr_reader :filename, :engine
 
   def initialize(filename, engine=SalesEngine.new)
@@ -64,6 +67,12 @@ class MerchantRepository
     end
     sorted = merchants.reverse
     sorted[0, x]
+  end
+
+  def revenue(date)
+    all.map do |merchant|
+      merchant.revenue(date)
+    end.reduce(:+)
   end
 
   private

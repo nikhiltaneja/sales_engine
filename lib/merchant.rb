@@ -47,7 +47,7 @@ class Merchant
 
   def calculate_revenue_with_date(date)
     successful_invoices = invoices.find_all do |invoice|
-      invoice.successful_transactions && invoice.created_at == date
+      invoice.successful? && invoice.created_at == date
     end
     total_invoices(successful_invoices)
   end

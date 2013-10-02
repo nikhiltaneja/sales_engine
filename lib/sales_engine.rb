@@ -23,9 +23,16 @@ class SalesEngine
 
   def initialize(dir = './data')
     @dir = dir
+    startup
   end
 
-  def startup 
+  def startup
+    invoice_repository 
+    merchant_repository
+    customer_repository
+    item_repository
+    invoice_item_repository
+    transaction_repository
   end
 
   def merchant_repository

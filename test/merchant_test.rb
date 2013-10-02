@@ -78,7 +78,7 @@ class MerchantTest < Minitest::Test
 
     engine = SalesEngine.new("./test/fixtures")
     merchant = Merchant.new(data, engine)
-    assert_equal BigDecimal("1872.74"), merchant.revenue('2012-03-12 05:54:09 UTC')
+    assert_equal BigDecimal("0"), merchant.revenue('2012-03-12 05:54:09 UTC')
   end
 
 end

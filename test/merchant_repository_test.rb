@@ -2,6 +2,7 @@ gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/merchant_repository'
+require './lib/sales_engine'
 
 class MerchantRepositoryTest < Minitest::Test
   attr_reader :repo
@@ -114,8 +115,14 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 5, engine.merchant_repository.most_revenue(5).count 
   end
 
+  def test_it_returns_the_total_revenue_for_that_date_across_all_merchants_failed_transaction
+    engine = SalesEngine.new("./test/fixtures")
+    assert_equal BigDecimal("0"), engine.merchant_repository.revenue('2012-03-12 05:54:09 UTC')
+  end
 
-  #### date expected as : Tue, 20 Mar 2012
-
+  def test_it_returns_the_total_revenue_for_that_date_across_all_merchants_successful_transaction
+    engine = SalesEngine.new("./test/fixtures")
+    assert_equal BigDecimal("21067.77"), engine.merchant_repository.revenue('2012-03-25 09:54:09 UTC')
+  end
 
 end
