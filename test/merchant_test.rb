@@ -81,14 +81,26 @@ class MerchantTest < Minitest::Test
     assert_equal BigDecimal("0"), merchant.revenue('2012-03-12')
   end
 
-  # def test_it_can_return_all_customers_with_pending_invoices
-  #   data = {:id => '26',
-  #           :name =>  'Bernhard-Johns',
-  #           :created_at => '2012-03-27',
-  #           :updated_at => '2012-03-27 14:53:59 UTC'}
-  #   engine = SalesEngine.new("./test/fixtures")
-  #   merchant = Merchant.new(data, engine)
-  #   assert_equal 1, merchant.customers_with_pending_invoices.count
-  # end
+
+  def test_it_can_find_all_pending_invoices
+    data = {:id => '27',
+            :name =>  'Bernhard-Johns',
+            :created_at => '2012-03-27',
+            :updated_at => '2012-03-27 14:53:59 UTC'}
+    engine = SalesEngine.new("./test/fixtures")
+    merchant = Merchant.new(data, engine)
+    assert_equal 1, merchant.pending_invoices.count
+  end
+
+  def test_it_will_return_customers_with_pending_invoices
+    data = {:id => '27',
+            :name =>  'Bernhard-Johns',
+            :created_at => '2012-03-27',
+            :updated_at => '2012-03-27 14:53:59 UTC'}
+    engine = SalesEngine.new("./test/fixtures")
+    merchant = Merchant.new(data, engine)
+    match = engine.customer_repository.find_by_id("9")
+    assert_equal match.id, merchant.customers_with_pending_invoices.first.id
+  end
 
 end
