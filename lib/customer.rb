@@ -17,4 +17,9 @@ class Customer
     end
   end
 
+  def transactions
+    invoices.collect do |invoice|
+      engine.transaction_repository.find_all_by_invoice_id(invoice.id)
+    end
+  end
 end
