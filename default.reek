@@ -1,5 +1,6 @@
 ---
-LongMethod:
+TooManyStatements:
+  enabled: true
   max_statements: 10
 Attribute:
   enabled: false
